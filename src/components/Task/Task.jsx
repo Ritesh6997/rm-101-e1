@@ -10,11 +10,12 @@ const Task = ({ value,handledelete,handlestate }) => {
         <li data-testid="task" className={styles.task}>
           <input
             onClick={() => {
-              handlestate(ele)
+              handlestate(ele);
             }}
             checked={ele.done}
             type="checkbox"
             data-testid="task-checkbox"
+            className={styles.inp}
           />
           <div data-testid="task-text">{ele.text}</div>
           {<Counter count={ele.count}></Counter>}
@@ -22,9 +23,10 @@ const Task = ({ value,handledelete,handlestate }) => {
             onClick={() => {
               handledelete(ele.id);
             }}
+            style={{backgroundColor:"#0c042d",color:"white"}}
             data-testid="task-remove-button"
           >
-            delect
+            Delect
           </button>
         </li>
       ))}
