@@ -13,12 +13,15 @@ const TaskApp = () => {
     uncomplete: 0,
     completed: 0,
   });
-  const handlestate = (i, ele) => {
-    console.log("hadle")
-    const datafilter = tasks.filter(ele => {
-      return tasks[i] != i;
+  const handlestate = (ele) => {
+    const datafilter = tasks.filter(e => {
+      if (e.id === ele.id) {
+        e.done = !e.done; 
+        return e;
+      }
+      return e;
     });
-    setTasks([...datafilter, ele]);
+    setTasks([...datafilter]);
   }
   const handledelete = (id) => {
     const filterData=tasks.filter((ele) => {
@@ -28,7 +31,6 @@ const TaskApp = () => {
   }
   useEffect(() => {
     if (tasks.length > 0) {
-      const count = (tasks) => {
         let completed1 = 0;
         let uncomp = 0;
         for (let i = 0; i < tasks.length; i++) {
@@ -42,8 +44,6 @@ const TaskApp = () => {
         }
         setCount({ ...counts, uncomplete: uncomp, completed: completed1 });
       }
-      count(tasks);
-    }
   },[tasks])
   // NOTE: do not delete `data-testid` key value pair
   return (
